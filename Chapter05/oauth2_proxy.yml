@@ -1,0 +1,35 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: oauth2-proxy
+  namespace: kube-system
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: oauth2-proxy
+  template:
+    metadata:
+      labels:
+        app: oauth2-proxy
+    spec:
+      containers:
+      - args:
+        - --provider=azure
+        - --email-domain=microsoft.com
+        - --upstream=http://10.0.83.95:80
+        - --http-address=0.0.0.0:4180
+        - --azure-tenant=d3dc3a5f-de30-4781-8752-7814fd5d0a5e
+        env:
+          - name: OAUTH2_PROXY_CLIENT_ID
+            value: 9f640227-965c-43ac-bf8d-8bc5eac86ea1
+          - name: OAUTH2_PROXY_CLIENT_SECRET
+            value: "wu:q{%.}+^&X(K;_!K|0:1+k(v^.E%^]%w)7;);*NL9$;>!l()_"
+          - name: OAUTH2_PROXY_COOKIE_SECRET
+            value: 9ju360pxM2nVQdQqQZ4Dtg==
+        image: docker.io/colemickens/oauth2_proxy:latest
+        imagePullPolicy: Always
+        name: oauth2-proxy
+        ports:
+        - containerPort: 4180
+          protocol: TCP
