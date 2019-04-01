@@ -2,7 +2,7 @@ apiVersion: extensions/v1beta1
 kind: Deployment
 metadata:
   name: oauth2-proxy
-  namespace: kube-system
+  namespace: default
 spec:
   replicas: 1
   selector:
@@ -16,17 +16,17 @@ spec:
       containers:
       - args:
         - --provider=azure
-        - --email-domain=microsoft.com
-        - --upstream=http://10.0.83.95:80
+        - --email-domain=outlook.com
+        - --upstream=file:///dev/null
         - --http-address=0.0.0.0:4180
-        - --azure-tenant=<insert your azure ad tenant/directory id here>
+        - --azure-tenant=d3dc3a5f-de30-4781-8752-7814fd5d0a5e
         env:
           - name: OAUTH2_PROXY_CLIENT_ID
-            value: <insert your azure ad app client id here>
+            value: 9f640227-965c-43ac-bf8d-8bc5eac86ea1
           - name: OAUTH2_PROXY_CLIENT_SECRET
-            value: "<insert your azure ad app secret here>"
+            value: "wu:q{%.}+^&X(K;_!K|0:1+k(v^.E%^]%w)7;);*NL9$;>!l()_"
           - name: OAUTH2_PROXY_COOKIE_SECRET
-            value: <you could run python -c 'import secrets,base64; print(base64.b64encode(base64.b64encode(secrets.token_bytes(16))));'>
+            value: 9ju360pxM2nVQdQqQZ4Dtg==
         image: docker.io/colemickens/oauth2_proxy:latest
         imagePullPolicy: Always
         name: oauth2-proxy
