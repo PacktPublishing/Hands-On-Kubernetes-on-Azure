@@ -1,3 +1,6 @@
 [submodule "Chapter02/azure-voting-app-redis"]
 	path = Chapter02/azure-voting-app-redis
 	url = https://github.com/Azure-Samples/azure-voting-app-redis.git
+[submodule "Chapter09/event-sourcing-microservices-example"]
+	path = Chapter09/event-sourcing-microservices-example
+	url = https://github.com/kbastani/event-sourcing-microservices-example.git
